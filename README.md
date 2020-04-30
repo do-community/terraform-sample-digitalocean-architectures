@@ -1,38 +1,23 @@
-# What is a VPC
+# Sample Cloud Architectures Deployable to DigitalOcean
+This repository is a collection of sample architectures using multiple 
+[DigitalOcean](https://www.digitalocean.com/) products to produce production 
+ready environments for code to be deployed. All architectures are deployed via
+[Terraform](https://www.terraform.io/).
 
-# Architecture Designs
+## Requirements
+You will need the following to deploy the code within these repositories:
 
-## Basic Architecture
+* A [DigitalOcean Account](https://cloud.digitalocean.com/projects). You will 
+need to create an [API key](https://www.digitalocean.com/docs/apis-clis/api/create-personal-access-token/) in the [cloud dashboard](https://cloud.digitalocean.com/)
 
-## Environment Segmented Architecture
+* Terrform [installed](https://www.terraform.io/downloads.html) in your 
+developer environment. 
 
-## Region Segmented Architecture
+## Functional Architectures
 
-# Basic Architecture
+* 01-minimal-vpc - This is what I considered _bare bones_ VPC architecture.
 
-```
-eval `ssh-agent`
-ssh-add
-```
+## Work In Progress Architectures
 
-`ssh -A user@DNS_NAME`
-
-
-Bastion SSH hosts
-* Just copy keys manually. Will work on automating later
-
-```
-cd /etc/ssh
-tar -cvf ssh_keys.tar ssh_host_*_key
-scp ssh_keys.tar root@BASTION_HOST_IP
-
-ssh root@BASTION_HOST_IP
-mv ~/ssh_keys.tar
-rm -rf ssh_host_*_key
-tar -xvf ssh_keys.tar
-
-systemctl restart sshd
-systemctl status sshd # Check to for any errors
-```
-Users can use the load balancer. However, there are still DNS records for each
-individual bastion in case load balancer goes down.
+* 02-minial-vpc-bastions-nat-gateway - An extension of minimal-vpc with
+a NAT-gateway and multiple bastion hosts behind a load balancer
