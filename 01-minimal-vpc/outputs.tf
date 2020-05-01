@@ -1,15 +1,10 @@
-# The Public IPv4 Addresses of the droplets
-output "web_servers_public" {
-    value = digitalocean_droplet.web.*.ipv4_address
-}
-
 # The Private IPv4 Addresses of the droplets
 output "web_servers_private" {
     value = digitalocean_droplet.web.*.ipv4_address_private
 }
 
 # The fully qualified domain name of the load balancer
-output "web_lb" {
+output "web_loadbalancer_fqdn" {
     value = digitalocean_record.web.fqdn
 }
 
