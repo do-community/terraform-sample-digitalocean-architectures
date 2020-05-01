@@ -11,6 +11,11 @@ variable ssh_key {
     type = string
 }
 
+# The first part of my URL. Ex: the www in www.digitalocean.com
+variable "subdomain" {
+    type = string
+}
+
 # Domain you have registered and DigitalOcean manages
 variable domain_name {
     type = string
@@ -31,6 +36,7 @@ variable "region" {
     type    = string
     default = "nyc3"
 }
+
 
 # The number of droplets to create.
 variable "droplet_count" {

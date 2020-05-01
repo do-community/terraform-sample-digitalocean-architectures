@@ -55,7 +55,28 @@ resource "digitalocean_droplet" "web" {
 }
 
 ################################################################################
-# Load Balancer for distributing traffic amongst our web servers               #
+# Create a certificate for SSL for our Load Balancer                           #
+################################################################################
+resource "digitalocean_certificate" "web" {
+
+    # Human friendly name of the certificate
+    name = "${var.name}-certificate"
+
+    # type of certificate. Use Let's Encrypt to create the ticket
+    type = "lets_encrypt"
+
+    # The fqdn to get the certificate for
+    domains = ["${var.subdomain}.${data.digitalocean_domain.web.name}"]
+
+    # Ensure we create a new certificate successfully before deleting the old
+    # one
+    lifecycle {
+        create_before_destroy = true
+    }
+}
+################################################################################
+# Load Balancer for distributing traffic amongst our web servers. Uses SSL     #
+# termination and forwards HTTPS traffic to HTTP internally                    #
 ################################################################################
 resource "digitalocean_loadbalancer" "web" {
 
@@ -71,16 +92,21 @@ resource "digitalocean_loadbalancer" "web" {
     # What VPC to put the load balancer in
     vpc_uuid = digitalocean_vpc.web.id
 
+    # Force all HTTP traffic to come through via HTTPS
+    redirect_http_to_https = true
+    
     #--------------------------------------------------------------------------#
     # Forward all traffic received on port 80 using the http protocol to       #
     # Port 80 using the http protocol of the hosts behind this load balancer   #
     #--------------------------------------------------------------------------#
     forwarding_rule {
-        entry_port = 80
-        entry_protocol = "http"
+        entry_port = 443
+        entry_protocol = "https"
 
         target_port = 80
         target_protocol = "http"
+
+        certificate_id = digitalocean_certificate.web.id
     }
 
     #-----------------------------------------------------------------------------------------------#
@@ -185,7 +211,7 @@ resource "digitalocean_record" "web" {
     type   = "A"
 
     # Set the name to the region we chose. Can be anything
-    name   = var.region
+    name   = var.subdomain
 
     # Point the record at the IP address of our load balancer
     value  = digitalocean_loadbalancer.web.ip

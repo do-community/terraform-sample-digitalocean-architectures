@@ -2,12 +2,12 @@
 # This terraform project aims to provide a minimal viable deployment of a      #
 # load balanced web platform, using a database within a Virtual Private Cloud. #
 #                                                                              #
-#              *For This Example, We're Going to Have 3 Web Servers*           #
-# This deployment will take http traffic on port 80 and forward it to 3 web    #
-# servers via a round robin algorithm. We will have a bastion host, also known #
-# as a jump box, that we will use to ssh into the private droplets. The        #
-# droplets will access a managed database that will also be secured within the #
-# VPC.                                                                         #
+#            *For This Example, We're Going to Have 3 Web Servers*             #
+# This deployment will take https traffic on port 443 and forward it to port 80#
+# on the internal web servers (This is known as SSL termination) via a round   # 
+# robin algorithm. We will have a bastion host, also known as a jump box, that #
+# we will use to ssh into the private droplets. The droplets will access a     #
+# managed database that will also be secured within the  VPC.                  #
 #                                                                              # 
 # Following recommended practice for terraform file configuration, the         #
 # different components of this architecture have been separated into different #
