@@ -15,7 +15,7 @@ developer environment.
 
 ## Functional Architectures
 
-* 01-minimal-vpc - This is what I considered _bare bones_ VPC architecture.
+* [01-minimal-vpc](https://github.com/Zelgius/terraform-sample-digitalocean-architectures/tree/master/01-minimal-vpc) - This is what I considered _bare bones_ VPC architecture.
 
 ## Work In Progress Architectures
 
