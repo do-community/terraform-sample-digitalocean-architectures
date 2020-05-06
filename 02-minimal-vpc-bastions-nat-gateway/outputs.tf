@@ -1,31 +1,39 @@
-output "web_servers_public" {
-    value = digitalocean_droplet.web.*.ipv4_address
-}
-
+# The Private IPv4 Addresses of the droplets
 output "web_servers_private" {
     value = digitalocean_droplet.web.*.ipv4_address_private
 }
 
-output "bastion_servers_public" {
-    value = digitalocean_droplet.bastion.*.ipv4_address
+# The fully qualified domain name of the load balancer
+output "web_loadbalancer_fqdn" {
+    value = digitalocean_record.web.fqdn
 }
 
-output "bastion_servers_private" {
-    value = digitalocean_droplet.bastion.*.ipv4_address_private
+# The fully qualified domain name of the bastion host
+output "bastion_fqdn" {
+    value = digitalocean_record.bastion.fqdn
 }
 
-output "web_lb" {
-    value = digitalocean_loadbalancer.web.ip
+# The port the postgres database is listening on
+output "database_port" {
+    value = digitalocean_database_cluster.postgres-cluster.port
 }
 
-output "bastion_lb" {
-    value = digitalocean_loadbalancer.bastion.ip
+# The URI for connecting to the database
+output "database_private_uri" {
+    value = digitalocean_database_cluster.postgres-cluster.private_uri
 }
 
-output "bastion_hosts" {
-    value = digitalocean_droplet.bastion.*.name
+# The name of the default database
+output "database_name" {
+    value = digitalocean_database_cluster.postgres-cluster.database
 }
 
-output "bastion_lb_name" {
-    value = digitalocean_record.bastion-lb.fqdn
+# The name of the default user
+output "database_user" {
+    value = digitalocean_database_cluster.postgres-cluster.user
+}
+
+# The default user password
+output "database_password" {
+    value = digitalocean_database_cluster.postgres-cluster.password
 }

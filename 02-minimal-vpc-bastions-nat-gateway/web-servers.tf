@@ -2,8 +2,8 @@
 # Create n web servers with nginx installed and a custom message on main page  #
 ################################################################################
 resource "digitalocean_droplet" "web" {
-    # How many droplet(s) do we want. Taken from our variables
-    count = var.droplet_count
+    # How many webserver droplet(s) do we want. Taken from our variables
+    count = var.webserver_count
 
     # Which image to use. Taken from our variables
     image = var.image
@@ -83,7 +83,7 @@ resource "digitalocean_loadbalancer" "web" {
     # The user friendly name of the load balancer
     name = "web-${var.region}"
 
-    # What region to deploy the LB to
+    # What region to deploy the LB to.
     region = var.region
 
     # Which droplets should the load balancer route traffic to
