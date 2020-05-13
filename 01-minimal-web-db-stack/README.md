@@ -207,3 +207,7 @@ up on [Terraform workspaces](https://www.terraform.io/docs/state/workspaces.html
     * [My Terraform Webinar](https://www.youtube.com/watch?v=U5suIJwobiQ)
     * [My Terraform Webinar Code and Examples](https://github.com/Zelgius/Infrastructure-As-Code-Intro)
 * [DigitalOcean Product Docs](https://www.digitalocean.com/docs/)
+
+## Contributors
+
+* Mason Egger - Primary Author
