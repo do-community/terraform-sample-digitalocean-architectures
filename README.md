@@ -15,9 +15,12 @@ developer environment.
 
 ## Functional Architectures
 
-* [01-minimal-vpc](https://github.com/Zelgius/terraform-sample-digitalocean-architectures/tree/master/01-minimal-vpc) - This is what I considered _bare bones_ VPC architecture.
+* [01-minimal-web-db-stack](https://github.com/Zelgius/terraform-sample-digitalocean-architectures/tree/master/01-minimal-web-db-stack) - This architecture stands up the traditional architecture for a LEP* Stack 
+(Linux, Nginx, Postgres, Web Tech). The webserver and database can easily be 
+changed to fit what you require in the terraform files. This is a _basic_ VPC 
+based architecture. See the README in the directory for more information.
 
 ## Work In Progress Architectures
 
-* 02-minial-vpc-bastions-nat-gateway - An extension of minimal-vpc with
-a NAT-gateway and multiple bastion hosts behind a load balancer
+* 02-minial-vpc-bastions-nat-gateway - An extension of minimal-web-db-stack with
+a NAT-gateway and multiple bastion hosts behind a load balancer.
