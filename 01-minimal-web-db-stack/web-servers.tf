@@ -109,6 +109,16 @@ resource "digitalocean_loadbalancer" "web" {
         certificate_id = digitalocean_certificate.web.id
     }
 
+    forwarding_rule {
+        entry_port = 80
+        entry_protocol = "http"
+
+        target_port = 80
+        target_protocol = "http"
+
+        certificate_id = digitalocean_certificate.web.id
+    }
+
     #-----------------------------------------------------------------------------------------------#
     # Ensures that we create the new resource before we destroy the old one                         #
     # https://www.terraform.io/docs/configuration/resources.html#lifecycle-lifecycle-customizations #
