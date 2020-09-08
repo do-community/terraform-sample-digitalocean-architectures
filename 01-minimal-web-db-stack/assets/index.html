@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DigitalOcean Sample Architecture</title>
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Almarai:wght@800&amp;family=Nunito+Sans&amp;display=swap"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <img
+          src="https://assets.codepen.io/43365/logo.svg"
+          alt="DigitalOcean Logo"
+          width="100"
+        />
+        <h1>Welcome to your new <a href="#">Droplet</a> CHANGE_ME!</h1>
+
+        <p>
+          SSH into your Droplet and edit <code>/var/www/html/index.html</code> to
+          get started!
+        </p>
+      </div>
+
+      <div class="links">
+        <a href="https://github.com/do-community/terraform-sample-digitalocean-architectures/tree/master/01-minimal-web-db-stack" target="_blank"
+          ><strong>View the code</strong><span>View the Terraform Code on GitHub</span></a
+        >
+        <a href="https://www.digitalocean.com/community/tags/terraform" target="_blank"
+          ><strong>Terraform Tutorials</strong>
+          <span>View DigitalOcean Terraform Tutorials</span>
+        </a>
+        <a href="https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs" target="_blank"
+          ><strong>DigitalOcean Terraform Provider</strong>
+          <span>View the Terraform Documentation</span>
+        </a>
+        <a
+          href="https://www.digitalocean.com/docs/droplets/how-to/" target="_blank"
+          ><strong>Droplet Documentation</strong>
+          <span>Learn all about Droplets</span>
+        </a>
+      </div>
+    </div>
+
+    <div id="stripes">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 50px;
+        min-height: 100vh;
+        position: relative;
+        color: #fff;
+        font-family: "Nunito Sans", sans-serif;
+        font-size: 19px;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Almarai", sans-serif;
+      }
+
+      :root {
+        --background: linear-gradient(
+          150deg,
+          #17acff 15%,
+          #016aff 70%,
+          #68a6ff 94%
+        );
+        --first: #53f;
+        --second: #4553ff;
+        --third: #4f40ff;
+        --fourth: #25ddf5;
+        --fifth: #1fa2ff;
+      }
+
+      #stripes {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100vw;
+        display: grid;
+        background: var(--background);
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        transform: skewY(-12deg);
+        transform-origin: 0;
+      }
+
+      #stripes span {
+        /* border: 1px solid #c00c00; */
+      }
+
+      #stripes span:first-child {
+        grid-column: span 1;
+        background: var(--first);
+      }
+
+      #stripes span:nth-child(2) {
+        grid-column: span 2;
+        background: var(--second);
+      }
+
+      #stripes span:nth-child(3) {
+        grid-column: span 2;
+        background: var(--third);
+      }
+
+      #stripes span:nth-child(4) {
+        grid-column: 6;
+        grid-row: 3;
+        background: var(--fourth);
+      }
+
+      #stripes span:nth-child(5) {
+        grid-column: span 2;
+        grid-row: 4;
+        background: var(--fifth);
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 50px 0;
+      }
+
+      .content {
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      h1 a {
+        color: #dbf1f5;
+      }
+
+      h1 a:hover {
+        color: #7decff;
+      }
+
+      p {
+        margin-bottom: 50px;
+      }
+
+      code {
+        display: inline-block;
+        padding: 3px 6px;
+        margin-left: 3px;
+        margin-right: 3px;
+        border-radius: 5px;
+        font-size: 0.8rem;
+        background: #1a2279;
+        color: #dbf1f5;
+      }
+
+      .links {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .links a {
+        position: relative;
+        display: block;
+        background: rgba(255, 255, 255, 0.85);
+        border-radius: 5px;
+        padding: 20px;
+        font-size: 1.1rem;
+        text-decoration: none;
+        color: #222;
+        transition: 0.3s ease all;
+        overflow: hidden;
+      }
+
+      .links a:before,
+      .links a:after {
+        font-size: 40px;
+        display: block;
+        position: absolute;
+      }
+
+      .links a:before {
+        content: "";
+        top: -80%;
+        right: -150px;
+        width: 250px;
+        height: 250px;
+        background: rgba(125, 236, 255, 0.6);
+        pointer-events: none;
+        transform: rotate(-25deg);
+        transition: 0.4s cubic-bezier(0.34, 0.31, 0, 1.81) transform;
+      }
+
+      .links a:after {
+        content: "👉";
+        top: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        right: 30px;
+        transform: translateX(80px);
+        transition: 0.3s cubic-bezier(0.34, 0.31, 0, 1.81) transform;
+      }
+
+      .links a:hover {
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.5);
+      }
+
+      .links a:hover:before {
+        transform: rotate(-25deg) translateX(60px);
+      }
+
+      .links a:hover:after {
+        transform: none;
+      }
+
+      .links a strong,
+      .links a span {
+        position: relative;
+        z-index: 1;
+      }
+
+      .links a strong {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .links a span {
+        color: #787878;
+        font-size: 0.9rem;
+      }
+    </style>
+  </body>
+</html>
