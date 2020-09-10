@@ -11,11 +11,6 @@ variable ssh_key {
     type = string
 }
 
-# Location of the private key you'll use to login
-variable pvt_key {
-    type = string
-}
-
 # The first part of my URL. Ex: the www in www.digitalocean.com
 variable "subdomain" {
     type = string

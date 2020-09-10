@@ -137,9 +137,6 @@ environment variables.
 * `ssh_key` - Name of your SSH Hey as it appears in the DigitalOcean dashboard
 * `subdomain` - The first part of your URL. Ex: The `www` in `www.digitalocean.com`
 * `domain_name` - Domain you have registerd and managed by DigitalOcean
-* `pvt_key` - The fully qualified path to the private key you will access the Droplets with.
-This should be on the same machine you are running this code from. This key will allow for
-the html asset to be copied over to your Droplet at apply time.
 
 #### Optional Variables
 These variables are up to you if you want to change them, or just go with 

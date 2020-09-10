@@ -28,19 +28,6 @@ resource "digitalocean_droplet" "web" {
     # Tags for identifying the droplets and allowing db firewall access
     tags = ["${var.name}-webserver", "terraform-sample-archs"]
 
-    provisioner "file" {
-	source = "assets/index.html"
-	destination = "/root/index.html"
-	connection {
-		type     = "ssh"
-		user     = "root"
-		private_key = file(var.pvt_key)
-		timeout = "2m"
-		host = self.ipv4_address
-	}
-    }
-
-
     #--------------------------------------------------------------------------#
     # Use user data, also known as cloud-init, to do an initial configuration  #
     # of the servers. This example is just for demonstration. In reality it    #
@@ -54,7 +41,7 @@ resource "digitalocean_droplet" "web" {
         - postgresql
         - postgresql-contrib
     runcmd:
-        - mv /root/index.html /var/www/html/index.html
+        - wget -P /var/www/html https://raw.githubusercontent.com/do-community/terraform-sample-digitalocean-architectures/master/01-minimal-web-db-stack/assets/index.html
         - sed -i "s/CHANGE_ME/web-${var.region}-${count.index +1}/" /var/www/html/index.html
     EOF
 
