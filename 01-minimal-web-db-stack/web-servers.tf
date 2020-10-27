@@ -106,7 +106,7 @@ resource "digitalocean_loadbalancer" "web" {
         target_port = 80
         target_protocol = "http"
 
-        certificate_id = digitalocean_certificate.web.id
+        certificate_name = "${var.name}-certificate"
     }
 
     forwarding_rule {
@@ -116,7 +116,7 @@ resource "digitalocean_loadbalancer" "web" {
         target_port = 80
         target_protocol = "http"
 
-        certificate_id = digitalocean_certificate.web.id
+        certificate_name = "${var.name}-certificate"
     }
 
     #-----------------------------------------------------------------------------------------------#
