@@ -21,6 +21,7 @@ output "database_port" {
 # The URI for connecting to the database
 output "database_private_uri" {
     value = digitalocean_database_cluster.postgres-cluster.private_uri
+    sensitive = true
 }
 
 # The name of the default database
@@ -36,4 +37,5 @@ output "database_user" {
 # The default user password
 output "database_password" {
     value = digitalocean_database_cluster.postgres-cluster.password
+    sensitive = true
 }
