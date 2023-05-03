@@ -22,5 +22,5 @@ based architecture. See the README in the directory for more information.
 
 ## Work In Progress Architectures
 
-* 02-minial-vpc-bastions-nat-gateway - An extension of minimal-web-db-stack with
+* 02-minimal-vpc-bastions-nat-gateway - An extension of minimal-web-db-stack with
 a NAT-gateway and multiple bastion hosts behind a load balancer.
